@@ -6,13 +6,11 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  # Приводим имя репозитория к нижнему регистру автоматически в шагах,
-  # но здесь зададим переменную для namespace
   K8S_NAMESPACE: django-app
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  # Тесты запускаем на облачных раннерах GitHub (экономим ресурсы своей VM)
+  
   test:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +23,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      # Создаем пустой local_settings или заглушку, если нужно для тестов
+      
       - name: Run tests
         env:
           SECRET_KEY: "test_secret_key"
